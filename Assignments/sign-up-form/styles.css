@@ -127,7 +127,7 @@ img {
 .input-item {
     margin: 0;
     padding:0 20px 0 5px;
-    font-size: 1em;
+    font-size: 1.2em;
     line-height: 2em;
     border-radius: 6px;
     border: 1px solid gray;
@@ -135,7 +135,6 @@ img {
 
 .input-item:invalid {
     border: 2px solid rgb(230, 0, 0);
-
 }
 
 .input-item:focus {
