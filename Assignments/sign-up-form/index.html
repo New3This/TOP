@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="logo-container">
+            <img src="images/leaf.png" id="left-image"/>
+            <div class="logo-items">
+                <img src="images/odin-logo.png" id="logo-img"><div id="img-text">ODIN</div>
+            </div>
+        </div>
+        <div id="form-side">
+            <div class="top">
+                <p id="first-sent">This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams.</p>
+                <p id="third-sent">Sign up <span id="italics">now</span> to get started.</p>
+                <p id="second-sent">You <span id="italics">know</span> you want to.</p>
+            </div>
+            <div class="centre">
+                <p id="centre-text">Let's do this!</p>
+                <form id="form">
+                    <div id="form-item">
+                        <label class="label-item" for="fname">First Name</label>
+                        <input class="input-item" type="text" id="fname" name="fname">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="label-item" for="lname">Last Name</label>
+                        <input class="input-item" type="text" id="lname" name="lname">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="label-item" for="email">Email</label>
+                        <input class="input-item" type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="label-item" for="phone">First Name</label>
+                        <input class="input-item" type="number" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="label-item" for="password">Password</label>
+                        <input class="input-item" required minlength="5" maxlength="20" type="password" id="password" name="password">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="label-item" for="confirmpassword">Confirm Password</label>
+                        <input class="input-item" required minlength="5" maxlength="20" type="password" id="confirmpassword" name="confirmpassword">
+                    </div>
+
+                </form>
+            </div>
+            <div class="bottom">
+                <button id="bottom-btn">Create Account</button>
+                <p id="bottom-text"> Already have an account? <a href="https://www.idk.com">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
