@@ -10,7 +10,7 @@ Now it's time to practice the Grid tools we've learned and create a layout that 
 
 ## Desired Outcome
 
-![desired outcome](./desired-outcome.png)
+![desired outcome](https://github.com/user-attachments/assets/9cb37b3e-2657-46a6-ae13-65f0908a1800)
 
 ### Self Check
 
