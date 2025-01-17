@@ -14,6 +14,7 @@ If you use the tools in the Advanced Grid Properties lesson you should be able t
 
 ![Unstretched](https://github.com/user-attachments/assets/1fca727c-6408-4674-9395-8da6b9a2f00b)
 
+![Stretched](image.png)
 
 ### Hints
 - For this exercise you will need to add some CSS declaration blocks to the style.css file. Look through the HTML to see what selectors and combinators you can use.
