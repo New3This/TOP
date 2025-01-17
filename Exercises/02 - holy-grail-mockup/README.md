@@ -1,7 +1,3 @@
-# Holy Grail Mockup with Grid
-
-Now that you've made your Holy Grail layout responsive, we are going to have some fun making it a bit more complicated and adding some features. You might find this to be a bit more challenging than you expected. You might even be tempted to use Flexbox. But for the sake of this practice assignment, try and see if you can figure out how to recreate this entire mockup using only Grid. Feel free to add in your own dummy content or styling too!
-
 ## Desired Outcome
 
 ![desired outcome](https://github.com/user-attachments/assets/2d9fd59f-334b-42ea-b734-e982c8db6bc4)
@@ -14,7 +10,12 @@ If you use the tools in the Advanced Grid Properties lesson you should be able t
 
 ![Unstretched](https://github.com/user-attachments/assets/1fca727c-6408-4674-9395-8da6b9a2f00b)
 
-![Stretched](image.png)
+![Stretched](image-1.png)
+
+# Holy Grail Mockup with Grid
+
+Now that you've made your Holy Grail layout responsive, we are going to have some fun making it a bit more complicated and adding some features. You might find this to be a bit more challenging than you expected. You might even be tempted to use Flexbox. But for the sake of this practice assignment, try and see if you can figure out how to recreate this entire mockup using only Grid. Feel free to add in your own dummy content or styling too!
+
 
 ### Hints
 - For this exercise you will need to add some CSS declaration blocks to the style.css file. Look through the HTML to see what selectors and combinators you can use.
