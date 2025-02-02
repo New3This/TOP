@@ -7,8 +7,44 @@ let gameOver = false;
 let filledSquares = 0;
 startGame();
 
+function checkWinCondition() {
+    filledSquares = 0;
+
+    if (gameOver) {
+        removeEventListeners();
+    }
+
+    const winConditions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+
+    gridItems.forEach (
+        items => {
+            if (items.textContent == "X" || items.textContent == "O") {
+                filledSquares++;
+                if (filledSquares == 9) {
+                    gameOver = true;
+                    statusMsg.textContent = "Draw";
+                }
+            }
+        }
+    )
+
+    for (let oneWinCondition of winConditions) {
+        let [firstPos, secondPos, thirdPos] = oneWinCondition;
+        if (gridArray[firstPos].textContent == gridArray[secondPos].textContent && gridArray[thirdPos].textContent == gridArray[secondPos].textContent && (gridArray[secondPos].textContent == "X" || gridArray[secondPos].textContent == "O")) {
+            statusMsg.textContent = `${currentPlayer} wins`;
+            gameOver = true;
+        }
+    }
+
+    if (gameOver) {
+        removeEventListeners();
+    }
+}
 function addEffect(e) {
     if (e.target.textContent == "") {
+        e.target.textContent = currentPlayer;
+        checkWinCondition();
+
         if (currentPlayer == "X") {
             currentPlayer = "O";
         }
@@ -16,100 +52,7 @@ function addEffect(e) {
             currentPlayer = "X";
         }
     }
-    e.target.textContent = currentPlayer;
-    gameOver = true;
-    if (gridArray[1].textContent == gridArray[4].textContent && gridArray[4].textContent == gridArray[7].textContent) {
-        if (gridArray[1].textContent == "X") {
-            statusMsg.textContent = "X Wins!";
-        }
-        else if (gridArray[1].textContent == "O") {
-            statusMsg.textContent = "O Wins!";
-        }
-    }
-
-    else if (gridArray[0].textContent == gridArray[3].textContent && gridArray[3].textContent == gridArray[6].textContent) {
-        if (gridArray[0].textContent == "X") {
-            statusMsg.textContent = "X Wins!";
-        }
-        else if (gridArray[0].textContent == "O") {
-            statusMsg.textContent = "O Wins!";
-        }
-    }
-
-    else if (gridArray[2].textContent == gridArray[5].textContent && gridArray[5].textContent == gridArray[8].textContent) {
-        if (gridArray[2].textContent == "X") {
-            statusMsg.textContent = "X Wins!";
-        }
-        else if (gridArray[2].textContent == "O") {
-            statusMsg.textContent = "O Wins!";
-        }
-    }
-
-
-
-    else if (gridArray[0].textContent == gridArray[1].textContent && gridArray[1].textContent == gridArray[2].textContent) {
-        if (gridArray[0].textContent == "X") {
-            statusMsg.textContent = "X Wins!";
-        }
-        else if (gridArray[0].textContent == "O") {
-            statusMsg.textContent = "O Wins!";
-        }
-    }
-
-    else if (gridArray[3].textContent == gridArray[4].textContent && gridArray[4].textContent == gridArray[5].textContent) {
-        if (gridArray[3].textContent == "X") {
-            statusMsg.textContent = "X Wins!";
-        }
-        else if (gridArray[3].textContent == "O") {
-            statusMsg.textContent = "O Wins!";
-        }
-    }
-
-    else if (gridArray[6].textContent == gridArray[7].textContent && gridArray[7].textContent == gridArray[8].textContent) {
-        if (gridArray[6].textContent == "X") {
-            statusMsg.textContent = "X Wins!";
-        }
-        else if (gridArray[6].textContent == "O") {
-            statusMsg.textContent = "O Wins!";
-        }
-    }
-    ////
-
-    else if (gridArray[0].textContent == gridArray[4].textContent && gridArray[4].textContent == gridArray[8].textContent) {
-        if (gridArray[0].textContent == "X") {
-            statusMsg.textContent = "X Wins!";
-        }
-        else if (gridArray[0].textContent == "O") {
-            statusMsg.textContent = "O Wins!";
-        }
-    }
-
-    else if (gridArray[2].textContent == gridArray[4].textContent && gridArray[4].textContent == gridArray[5].textContent) {
-        if (gridArray[2].textContent == "X") {
-            statusMsg.textContent = "X Wins!";
-        }
-        else if (gridArray[2].textContent == "O") {
-            statusMsg.textContent = "O Wins!";
-        }
-    }
-
-    else {
-        gameOver = false;
-    }
-    gridItems.forEach (
-        items => {
-
-            if (items.textContent == "X" || items.textContent == "O") {
-                filledSquares++;
-            }
-
-            if (filledSquares == 9) {
-                gameOver = true;
-            }
-        }
-    )
-
-
+   
 }
 
 function resetGame() {
@@ -120,6 +63,8 @@ function resetGame() {
             }
         }
     )
+    statusMsg.textContent = "";
+    startGame();
 }
 
 // function threeInARow() {
@@ -129,29 +74,23 @@ function resetGame() {
 //         }
 //     )
 // }
+resetBtn.addEventListener("click", resetGame);
 
 function addEventListeners() {
     gridItems.forEach (
         items => items.addEventListener("click", addEffect)
     )
-
-    resetBtn.addEventListener("click", resetGame);
 }
 
 function removeEventListeners() {
     gridItems.forEach(
         items => items.removeEventListener("click", addEffect)
     )
-    resetBtn.removeEventListener("click", resetGame);
 }
 
 function startGame() {
     currentPlayer = "O";
+    gameOver = false;
     addEventListeners();
-    if (gameOver) {
-        removeEventListeners();
-        resetGame();
-        startGame();
-    }
 }
 
