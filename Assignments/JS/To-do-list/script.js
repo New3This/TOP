@@ -88,6 +88,7 @@ function addItem() {
     </div>
     `;
     let todoText = toDoItem.querySelector(".todo-text");
+    todoText.classList.add("not-editing");
     todoText.textContent = inputArea.value;
 
 
@@ -150,6 +151,7 @@ function addItem() {
 
 
 function editActive(todoText, toDoItem, crossBtn, tickBtn, editBtn) {
+    todoText.classList.remove("not-editing");
     let currentText = todoText.textContent;
     const handleDel = () => deleteToDoText(toDoItem);
 
@@ -177,6 +179,7 @@ function tickCross(tickBtn, todoText, crossBtn, editBtn) {
     crossBtn.style.display = "none";
     tickBtn.style.display = "none";
     editBtn.style.display = "inline";
+    todoText.classList.add("not-editing");
 }
 
 function deleteToDoText(toDoItem) {
