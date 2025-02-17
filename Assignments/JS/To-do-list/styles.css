@@ -154,5 +154,12 @@ input {
     text-decoration: line-through;
 }
 
+.todo-text {
+    width:100%;
+}
+
+.todo-item-group {
+    width: 10%;
+}
 
 
