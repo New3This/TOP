@@ -17,7 +17,9 @@ let localStorageItems;
 let context = document.querySelector(".active").textContent;
 
 addEventSectionListener();
+
 loadList(context);
+
 function addEventSectionListener() {
     Array.from(sectionArray).forEach((item) => {
 
@@ -38,7 +40,6 @@ function addEventSectionListener() {
 
 function saveList(todoText, context) {
     localStorageItems = JSON.parse(localStorage.getItem(`${context}-list`) || "[]");
-
     localStorageItems.push(todoText.textContent);
     localStorage.setItem(`${context}-list`, JSON.stringify(localStorageItems));
     // console.log(JSON.parse(localStorage.getItem("todo-list")));
@@ -78,34 +79,28 @@ function loadList(context) {
             crossBtn.style.display = "none";
             tickBtn.style.display = "none";
 
-            if (toDoItem.textContent.trim() !== "") {
+            itemArea.appendChild(toDoItem);
+            const handleDel = () => deleteToDoText(context, toDoItem);
+            todoText.addEventListener("click", handleDel);
 
-
-                function handleDel() {
-                    deleteToDoText(context, toDoItem);
-                }
-
-
-                itemArea.appendChild(toDoItem);
-
-                todoText.addEventListener("click", handleDel);
                 
-                editBtn.addEventListener("click", () => editActive(context, todoText, toDoItem, crossBtn, tickBtn, editBtn));
+            editBtn.addEventListener("click", () => {
+                todoText.removeEventListener("click", handleDel);
+                editActive(todoText, toDoItem, crossBtn, tickBtn, editBtn);
+            })
 
-                checkBox.addEventListener("change", () => {
-                    if (checkBox.checked) {
-                        todoText.style.textDecoration = "line-through";
-                        todoText.style.color = "#808080";
-                    }
-                    else {
-                        todoText.style.color = "#000000";
-                        todoText.style.textDecoration = "none";
-                    }
-                })
-            }
-        });
+            checkBox.addEventListener("change", () => {
+                if (checkBox.checked) {
+                    todoText.style.textDecoration = "line-through";
+                    todoText.style.color = "#808080";
+                }
+                else {
+                    todoText.style.color = "#000000";
+                    todoText.style.textDecoration = "none";
+                }
+            })
+    })}
 
-    }
 }
 
 function addItem() {
@@ -144,16 +139,11 @@ function addItem() {
         function handleDel() {
             deleteToDoText(context, toDoItem);
         }
-
-
-        itemArea.appendChild(toDoItem);
-
         todoText.addEventListener("click", handleDel);
-        
-        editBtn.addEventListener("click", () => {
-            editActive(context, todoText, toDoItem, crossBtn, tickBtn, editBtn, context);
-            todoText.removeEventListener("click", handleDel);
 
+        editBtn.addEventListener("click", () => {
+            todoText.removeEventListener("click", handleDel);
+            editActive(todoText, toDoItem, crossBtn, tickBtn, editBtn);
         })
 
         checkBox.addEventListener("change", () => {
@@ -175,17 +165,16 @@ function addItem() {
     inputArea.value = "";
 }
 
-function editActive(context, todoText, toDoItem, crossBtn, tickBtn, editBtn, context) {
+function editActive(todoText, toDoItem, crossBtn, tickBtn, editBtn) {
     todoText.classList.remove("not-editing");
+    
     let currentText = todoText.textContent;
-    const handleDel = () => deleteToDoText(context, toDoItem);
 
     todoText.contentEditable = "true";
     todoText.focus();
     crossBtn.style.display = "inline";
     tickBtn.style.display = "inline";
     editBtn.style.display = "none";
-
 
     tickBtn.addEventListener("click", () => {
         const todoIndex = Array.from(itemArea.children).indexOf(toDoItem);
@@ -196,13 +185,12 @@ function editActive(context, todoText, toDoItem, crossBtn, tickBtn, editBtn, con
         }
             
         tickCross(tickBtn, todoText, crossBtn, editBtn);
-        todoText.addEventListener("click", handleDel);
+
     
     })
 
     crossBtn.addEventListener("click", () => {
         tickCross(tickBtn, todoText, crossBtn, editBtn);
-        todoText.addEventListener("click", handleDel);
         todoText.textContent = currentText;
     })
 }
